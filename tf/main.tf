@@ -22,13 +22,13 @@ resource "random_string" "tag_gerenciada" {
   special = false
 }
 
-#Chave ssh usada na máquina
+#Criação da chave ssh
 resource "tls_private_key" "ed25519" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
-# Create a new SSH key
+#SSH_KEY
 resource "digitalocean_ssh_key" "chave_ssh" {
   name       = "chave_ssh_tag_${random_string.tag_gerenciada[0].result}"
   public_key = tls_private_key.ed25519.public_key_openssh

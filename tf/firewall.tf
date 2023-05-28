@@ -1,10 +1,10 @@
 resource "digitalocean_firewall" "firewall_kind_controlplane_and_workers" {
-  name = "firewall-kind-controlplane-and-workers-${random_string.tag_gerenciada[0].result}"
-  tags = [random_string.tag_gerenciada[0].result]
-  depends_on = [ digitalocean_droplet.vm_kind_controlplane, digitalocean_droplet.vm_kind_worker ]
+  name       = "firewall-kind-controlplane-and-workers-${random_string.tag_gerenciada[0].result}"
+  tags       = [random_string.tag_gerenciada[0].result]
+  depends_on = [digitalocean_droplet.vm_kind_controlplane, digitalocean_droplet.vm_kind_worker]
 
   inbound_rule {
-    protocol         = "icmp"    
+    protocol         = "icmp"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 
@@ -57,7 +57,7 @@ resource "digitalocean_firewall" "firewall_kind_controlplane_and_workers" {
   }
 
   outbound_rule {
-    protocol         = "icmp"    
+    protocol              = "icmp"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
@@ -92,39 +92,39 @@ resource "digitalocean_firewall" "firewall_kind_controlplane_and_workers" {
   }
 
   outbound_rule {
-    protocol         = "tcp"
-    port_range       = "6443"
+    protocol              = "tcp"
+    port_range            = "6443"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   outbound_rule {
-    protocol         = "tcp"
-    port_range       = "10248"
+    protocol              = "tcp"
+    port_range            = "10248"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   outbound_rule {
-    protocol         = "tcp"
-    port_range       = "10250"
+    protocol              = "tcp"
+    port_range            = "10250"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   outbound_rule {
-    protocol         = "tcp"
-    port_range       = "10257"
+    protocol              = "tcp"
+    port_range            = "10257"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   outbound_rule {
-    protocol         = "tcp"
-    port_range       = "10259"
+    protocol              = "tcp"
+    port_range            = "10259"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   outbound_rule {
-    protocol         = "tcp"
-    port_range       = "30000-32767"
+    protocol              = "tcp"
+    port_range            = "30000-32767"
     destination_addresses = ["0.0.0.0/0", "::/0"]
-  }  
+  }
 
 }
